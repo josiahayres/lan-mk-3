@@ -17,13 +17,6 @@ import {
   Alert,
   Image,
 } from "@mantine/core";
-import { OrbitControls, useGLTF } from "@react-three/drei";
-import { Canvas } from "react-three-fiber";
-import { IconInfoCircle, IconTriangle } from "@tabler/icons";
-
-import { Interactive } from "../components/interactive";
-
-import modelSrc from "../assets/helicopter_v2.glb?url";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -125,12 +118,6 @@ const data = [
     category: "nature",
   },
 ];
-
-function Model() {
-  console.log("Model src", modelSrc, typeof modelSrc);
-  const { scene } = useGLTF(modelSrc);
-  return <primitive object={scene} />;
-}
 
 export function Portfolio() {
   const [canRotate, { toggle }] = useDisclosure(false);
