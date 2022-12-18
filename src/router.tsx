@@ -3,7 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root, { loader as rootLoader } from "./routes/root";
 import { ErrorPage } from "./error-page";
 import { Contact } from "./routes/contact";
-import { Portfolio } from "./routes/portfolio";
+import { Home } from "./routes/home";
 import { Competitors } from "./routes/competitors";
 
 export const router = createBrowserRouter(
@@ -16,7 +16,7 @@ export const router = createBrowserRouter(
       children: [
         {
           path: "/",
-          element: <Portfolio />,
+          element: <Home />,
         },
         {
           path: "contact",

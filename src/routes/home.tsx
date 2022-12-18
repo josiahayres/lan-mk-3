@@ -25,6 +25,7 @@ import {
   Box,
   List,
 } from "@mantine/core";
+import { IconAlertCircle } from "@tabler/icons";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -128,7 +129,7 @@ const data = [
   },
 ];
 
-export function Portfolio() {
+export function Home() {
   const [canRotate, { toggle }] = useDisclosure(false);
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
@@ -141,6 +142,13 @@ export function Portfolio() {
   return (
     <Container>
       <Stack spacing="xl">
+        <Alert
+          color="yellow"
+          icon={<IconAlertCircle />}
+          title="Work In Progress"
+        >
+          This site is still being built...
+        </Alert>
         <Card shadow={"md"} withBorder radius={"lg"}>
           <Stack>
             <Title>
