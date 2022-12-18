@@ -24,7 +24,20 @@ export function MantineTheme(props: React.PropsWithChildren) {
       toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
-        theme={{ colorScheme }}
+        theme={{
+          colorScheme,
+          primaryColor: "orange",
+          fontFamily: `'Raleway', sans-serif`,
+          headings: { fontFamily: `'Sen', sans-serif` },
+          fontSizes: {
+            xs: 12,
+            sm: 14,
+            md: 16,
+            lg: 18,
+            xl: 22,
+          },
+          datesLocale: "en-NZ",
+        }}
         withGlobalStyles
         withNormalizeCSS
       >

@@ -157,16 +157,14 @@ export function Home() {
                 span
                 variant="gradient"
                 inherit
-                gradient={{ from: "blue", to: "cyan" }}
+                gradient={{ from: "orange", to: "red" }}
               >
                 LAN MK
-              </Text>
-              <Text span fw="bold">
-                {" "}
-                III
-              </Text>
+              </Text>{" "}
+              III
             </Title>
             <Text>The third installment of the illustrious LAN MK series.</Text>
+
             <Image
               radius="md"
               src="https://images.unsplash.com/photo-1550745165-9bc0b252726f"

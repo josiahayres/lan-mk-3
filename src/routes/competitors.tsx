@@ -7,7 +7,8 @@ type Props = {};
 export const Competitors = (props: Props) => {
   const people: UserCardProps[] = [
     {
-      avatar: "JOSIAH",
+      avatar:
+        "https://cdn.thetrackernetwork.com/cdn/fortnite/2AFD1179_small.png",
       image:
         "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
       gamerTag: "BOT daFish",
@@ -16,22 +17,24 @@ export const Competitors = (props: Props) => {
       url: "https://fortnitetracker.com/profile/all/BOT%20daFish",
     },
     {
-      avatar: "JOSIAH",
+      avatar:
+        "https://cdn.thetrackernetwork.com/cdn/fortnite/BDCD285_small.png",
       image:
         "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
-      gamerTag: "BOT daFish",
-      name: "Josiah",
-      platform: "XBOX",
-      url: "https://fortnitetracker.com/profile/all/BOT%20daFish",
+      gamerTag: "babe1bae",
+      name: "Ben",
+      platform: "PC",
+      url: "https://fortnitetracker.com/profile/all/Babe1bae",
     },
     {
-      avatar: "JOSIAH",
+      avatar:
+        "https://cdn.thetrackernetwork.com/cdn/fortnite/26146172_small.png",
       image:
         "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
-      gamerTag: "BOT daFish",
-      name: "Josiah",
+      gamerTag: "BOT Rskii",
+      name: "Harry",
       platform: "XBOX",
-      url: "https://fortnitetracker.com/profile/all/BOT%20daFish",
+      url: "https://fortnitetracker.com/profile/all/BOT%20Rskii",
     },
   ];
   return (

@@ -6,6 +6,8 @@ import {
   createStyles,
   Card,
   BackgroundImage,
+  Group,
+  Badge,
 } from "@mantine/core";
 
 export interface UserCardProps {
@@ -54,15 +56,18 @@ export function UserCard({
         radius={80}
         mx="auto"
         mt={-30}
+        bg={theme.primaryColor}
         className={classes.avatar}
       />
       <Text align="center" size="lg" weight={500} mt="sm">
         {name}
       </Text>
       <Text align="center" size="sm" color="dimmed">
-        {gamerTag + " - " + platform}
+        {gamerTag}
       </Text>
-
+      <Group position="center">
+        <Badge>{platform}</Badge>
+      </Group>
       <Button
         variant="light"
         fullWidth
@@ -71,7 +76,7 @@ export function UserCard({
         href={url}
         target="_blank"
         rel="noopener"
-        color={theme.colorScheme === "dark" ? "blue" : "blue"}
+        color={theme.primaryColor}
       >
         View Stats
       </Button>

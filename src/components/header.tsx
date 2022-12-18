@@ -7,6 +7,7 @@ import {
   Burger,
   Title,
   Anchor,
+  Menu,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -73,7 +74,14 @@ const useStyles = createStyles((theme) => ({
           : theme.colors.gray[0],
     },
   },
-
+  linkActiveMobile: {
+    backgroundColor: theme.fn.variant({
+      variant: "light",
+      color: theme.primaryColor,
+    }).background,
+    color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
+      .color,
+  },
   linkActive: {
     "&, &:hover": {
       backgroundColor: theme.fn.variant({
@@ -108,19 +116,39 @@ export function CustomHeader({ links }: HeaderMiddleProps) {
     </Anchor>
   ));
 
+  const mobileItems = links.map((link) => (
+    <Anchor key={link.label} component={Link} to={link.link}>
+      <Menu.Item
+        onClick={toggle}
+        className={cx({
+          [classes.linkActiveMobile]: pathname === link.link,
+        })}
+      >
+        {link.label}
+      </Menu.Item>
+    </Anchor>
+  ));
+
   return (
     <Header height={60} mb={120}>
       <Container className={classes.inner}>
-        <Burger
-          opened={opened}
-          onClick={toggle}
-          size="sm"
-          className={classes.burger}
-        />
+        <Menu shadow="md" width={"90vw"} opened={opened}>
+          <Menu.Target>
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              size="sm"
+              className={classes.burger}
+            />
+          </Menu.Target>
+          <Menu.Dropdown mx="md">{mobileItems}</Menu.Dropdown>
+        </Menu>
+
         <Group className={classes.links} spacing={5}>
           {items}
         </Group>
         <Title order={3}>LAN MK III</Title>
+
         <Group spacing={0} className={classes.social} position="right" noWrap>
           <ActionIcon size="lg">
             <IconBrandFacebook size={18} stroke={1.5} />
