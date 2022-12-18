@@ -1,6 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useColorScheme } from "@mantine/hooks";
-import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from "@mantine/core";
 
 export async function loader() {
   const headerLinks = [
@@ -20,12 +24,12 @@ export async function loader() {
   return { headerLinks };
 }
 
-export function MantineTheme(props) {
+export function MantineTheme(props: React.PropsWithChildren) {
   // hook will return either 'dark' or 'light' on client
   // and always 'light' during ssr as window.matchMedia is not available
   const preferredColorScheme = useColorScheme();
   const [colorScheme, setColorScheme] = useState(preferredColorScheme);
-  const toggleColorScheme = (value) =>
+  const toggleColorScheme = (value: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   useEffect(() => {
@@ -35,7 +39,7 @@ export function MantineTheme(props) {
   return (
     <ColorSchemeProvider
       colorScheme={colorScheme}
-      // toggleColorScheme={toggleColorScheme}
+      toggleColorScheme={toggleColorScheme}
     >
       <MantineProvider
         theme={{ colorScheme }}

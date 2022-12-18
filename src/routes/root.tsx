@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { AppShell } from "@mantine/core";
-import { useColorScheme, usePrevious } from "@mantine/hooks";
+import { usePrevious } from "@mantine/hooks";
 import {
   NavigationProgress,
   completeNavigationProgress,
@@ -28,18 +28,13 @@ export async function loader() {
 }
 
 export default function Root() {
-  const { headerLinks } = useLoaderData();
+  const { headerLinks } = useLoaderData() as any;
   const { pathname } = useLocation();
   const prevPath = usePrevious(location.pathname);
 
   useEffect(() => {
     if (prevPath !== pathname) completeNavigationProgress();
   }, [pathname, prevPath]);
-
-  const preferredColorScheme = useColorScheme();
-  const [colorScheme, setColorScheme] = useState(preferredColorScheme);
-  const toggleColorScheme = (value) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
 
   return (
     <AppShell
