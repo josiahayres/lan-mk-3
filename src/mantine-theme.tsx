@@ -6,24 +6,6 @@ import {
   MantineProvider,
 } from "@mantine/core";
 
-export async function loader() {
-  const headerLinks = [
-    {
-      link: "/",
-      label: "Home",
-    },
-    {
-      link: "/projects",
-      label: "Projects",
-    },
-    {
-      link: "/contact",
-      label: "Contact",
-    },
-  ];
-  return { headerLinks };
-}
-
 export function MantineTheme(props: React.PropsWithChildren) {
   // hook will return either 'dark' or 'light' on client
   // and always 'light' during ssr as window.matchMedia is not available

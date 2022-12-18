@@ -4,6 +4,7 @@ import Root, { loader as rootLoader } from "./routes/root";
 import { ErrorPage } from "./error-page";
 import { Contact } from "./routes/contact";
 import { Portfolio } from "./routes/portfolio";
+import { Competitors } from "./routes/competitors";
 
 export const router = createBrowserRouter(
   [
@@ -20,6 +21,10 @@ export const router = createBrowserRouter(
         {
           path: "contact",
           element: <Contact />,
+        },
+        {
+          path: "competitors",
+          element: <Competitors />,
         },
       ],
     },

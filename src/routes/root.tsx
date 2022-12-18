@@ -16,8 +16,12 @@ export async function loader() {
       label: "Home",
     },
     {
+      link: "/competitors",
+      label: "Competitors",
+    },
+    {
       link: "/contact",
-      label: "Contact",
+      label: "Sign Up",
     },
   ];
   return { headerLinks };

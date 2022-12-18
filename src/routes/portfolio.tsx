@@ -16,6 +16,14 @@ import {
   Divider,
   Alert,
   Image,
+  Space,
+  Chip,
+  Badge,
+  BackgroundImage,
+  SimpleGrid,
+  Avatar,
+  Box,
+  List,
 } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
@@ -73,9 +81,9 @@ function CarouselCard({
           {title}
         </Title>
       </div>
-      <Button variant="white" color="dark">
+      {/* <Button variant="white" color="dark">
         Read article
-      </Button>
+      </Button> */}
     </Paper>
   );
 }
@@ -83,39 +91,40 @@ function CarouselCard({
 const data = [
   {
     image:
-      "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-    title: "Best forests to visit in North America",
-    category: "nature",
+      "https://images.unsplash.com/photo-1580464360012-948b4fe5ddc2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80",
+    title: "Overall Champion wins a Rare Fortnite Skin",
+    category: "1st Place",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-    title: "Hawaii beaches review: better than you think",
-    category: "beach",
+      "https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDg2fHxnYW1pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    title: "Runner up wins a Rare Fortnite Emote",
+    category: "2nd Place",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-    title: "Mountains at night: 12 best locations to enjoy the view",
-    category: "nature",
+      "https://images.unsplash.com/flagged/photo-1580234820596-0876d136e6d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2934&q=80",
+    title: "Take home [consolation prize] for your efforts.",
+    category: "3rd Place",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-    title: "Aurora in Norway: when to visit for best experience",
-    category: "nature",
+      "https://images.unsplash.com/photo-1605158663591-681f789bd067?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fGdhbWluZyUyMGxvc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    title: "Try harder next time if you want a prize",
+    category: "Last place",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-    title: "Best places to visit this winter",
-    category: "tourism",
+      "https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
+    title: "You can out-build any opponent to win the battle",
+    category: "Best Builder",
   },
   {
     image:
-      "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80",
-    title: "Active volcanos reviews: travel at your own risk",
-    category: "nature",
+      "https://images.unsplash.com/photo-1603163768210-60e522c7e1a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjU4fHxnYW1pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
+    title:
+      "Maybe you can't build like a pro, but you make up for it with your accuracy",
+    category: "Best Shot",
   },
 ];
 
@@ -156,22 +165,67 @@ export function Portfolio() {
             />
           </Stack>
         </Card>
-        <Divider c="gray.1"></Divider>
-        <Title order={3}>Prize Pool</Title>
-        <Carousel
-          slideSize="50%"
-          breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
-          slideGap="xl"
-          align="start"
-          slidesToScroll={mobile ? 1 : 2}
-        >
-          {slides}
-        </Carousel>
-        <Divider c="gray.1"></Divider>
-        <Title order={3}>About LAN MK III</Title>
-        <Title order={3}>Requirements</Title>
-        <Title order={3}>Whats provided</Title>
-        <Title order={3}>Event Schedule</Title>
+        <Card shadow={"md"} withBorder radius={"lg"}>
+          <Title order={2}>Prize Pool</Title>
+          <Space h="md" />
+          <Carousel
+            slideSize="50%"
+            breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
+            slideGap="xl"
+            align="start"
+            slidesToScroll={mobile ? 1 : 2}
+          >
+            {slides}
+          </Carousel>
+        </Card>
+        <Card shadow={"md"} withBorder radius={"lg"}>
+          <Title order={2} pb="md">
+            History of LAN MK
+          </Title>
+          <SimpleGrid cols={2}>
+            <Stack>
+              <Title order={4}>LAN MK I</Title>
+              <Group>
+                <Badge>Feb 2021</Badge>
+                <Badge>10 attendees</Badge>
+                <Badge>Blaine's Flat</Badge>
+              </Group>
+              <Group>
+                <Avatar title="Blaine" radius={"xl"}></Avatar>
+                <Text>Winner: Blaine</Text>
+              </Group>
+            </Stack>
+            <Stack>
+              <Title order={4}>LAN MK II</Title>
+              <Group>
+                <Badge>Feb 2022</Badge>
+                <Badge>12 attendees</Badge>
+                <Badge>Blaine's Flat</Badge>
+              </Group>
+              <Group>
+                <Avatar title="Blaine" radius={"xl"}></Avatar>
+                <Text>Winner: Blaine</Text>
+              </Group>
+            </Stack>
+          </SimpleGrid>
+        </Card>
+        <Card shadow={"md"} withBorder radius={"lg"}>
+          <Title order={2}>Event Schedule</Title>
+          <Box sx={{ height: "20vh" }}></Box>
+        </Card>
+        <Card shadow={"md"} withBorder radius={"lg"}>
+          <Title order={2}>Requirements</Title>
+          <List withPadding py="md">
+            <List.Item>Gaming monitor</List.Item>
+            <List.Item>Console or PC</List.Item>
+            <List.Item>Controller / Keyboard</List.Item>
+            <List.Item>Power Cable</List.Item>
+          </List>
+        </Card>
+        <Card shadow={"md"} withBorder radius={"lg"}>
+          <Title order={2}>What's provided</Title>
+          <Box sx={{ height: "20vh" }}></Box>
+        </Card>
       </Stack>
     </Container>
   );
