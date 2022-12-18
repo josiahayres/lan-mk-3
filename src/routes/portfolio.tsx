@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Carousel } from "@mantine/carousel";
 import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import {
@@ -14,12 +15,15 @@ import {
   Card,
   Divider,
   Alert,
+  Image,
 } from "@mantine/core";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { Canvas } from "react-three-fiber";
-import { Suspense } from "react";
+import { IconInfoCircle, IconTriangle } from "@tabler/icons";
 
 import { Interactive } from "../components/interactive";
+
+import modelSrc from "../assets/helicopter_v2.glb?url";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -49,7 +53,15 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function CarouselCard({ image, title, category }) {
+function CarouselCard({
+  image,
+  title,
+  category,
+}: {
+  image: string;
+  title: string;
+  category: string;
+}) {
   const { classes } = useStyles();
 
   return (
@@ -114,16 +126,13 @@ const data = [
   },
 ];
 
-import modelSrc from "../assets/helicopter_v2.glb?url";
-import { IconInfoCircle, IconTriangle } from "@tabler/icons";
-
-function Model(props) {
+function Model() {
   console.log("Model src", modelSrc, typeof modelSrc);
   const { scene } = useGLTF(modelSrc);
   return <primitive object={scene} />;
 }
 
-export default function Portfolio() {
+export function Portfolio() {
   const [canRotate, { toggle }] = useDisclosure(false);
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
@@ -136,38 +145,32 @@ export default function Portfolio() {
   return (
     <Container>
       <Stack spacing="xl">
-        <Title>
-          Hi I'm{" "}
-          <Text span c="blue" inherit>
-            Ben
-          </Text>
-          {", "}
-          <br />
-          3D Animator and Artist
-        </Title>
-        <Interactive></Interactive>
-        <Card>
-          <Title order={3}>Helicopter</Title>
-          <Alert icon={<IconInfoCircle />} title="Demo" color="green">
-            Visualise 3D models on the page
-          </Alert>
-          <Canvas
-            pixelRatio={[1, 2]}
-            camera={{ position: [-10, 15, 15], fov: 5 }}
-            style={{ width: "100%", height: "clamp(300px, 50vh, 800px)" }}
-          >
-            <ambientLight intensity={1} />
-            <Suspense fallback={null}>
-              <Model />
-            </Suspense>
-            {canRotate && <OrbitControls />}
-          </Canvas>
-          <Group position="center">
-            <Switch label="Rotate 3D Model" onChange={() => toggle()}></Switch>
-          </Group>
+        <Card shadow={"md"} withBorder radius={"lg"}>
+          <Stack>
+            <Title>
+              Welcome to{" "}
+              <Text
+                span
+                variant="gradient"
+                inherit
+                gradient={{ from: "blue", to: "cyan" }}
+              >
+                LAN MK
+              </Text>
+              <Text span fw="bold">
+                {" "}
+                III
+              </Text>
+            </Title>
+            <Text>The third installment of the illustrious LAN MK series.</Text>
+            <Image
+              radius="md"
+              src="https://images.unsplash.com/photo-1550745165-9bc0b252726f"
+            />
+          </Stack>
         </Card>
         <Divider c="gray.1"></Divider>
-        <Title order={3}>Highlighted Projects</Title>
+        <Title order={3}>Prize Pool</Title>
         <Carousel
           slideSize="50%"
           breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
@@ -177,9 +180,11 @@ export default function Portfolio() {
         >
           {slides}
         </Carousel>
-        <Card>
-          <Title order={3}>Want to work with me</Title>
-        </Card>
+        <Divider c="gray.1"></Divider>
+        <Title order={3}>About LAN MK III</Title>
+        <Title order={3}>Requirements</Title>
+        <Title order={3}>Whats provided</Title>
+        <Title order={3}>Event Schedule</Title>
       </Stack>
     </Container>
   );

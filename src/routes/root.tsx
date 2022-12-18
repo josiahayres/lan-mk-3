@@ -7,17 +7,13 @@ import {
   completeNavigationProgress,
 } from "@mantine/nprogress";
 
-import { BensHeader } from "../components/header";
+import { CustomHeader } from "../components/header";
 
 export async function loader() {
   const headerLinks = [
     {
       link: "/",
       label: "Home",
-    },
-    {
-      link: "/projects",
-      label: "Projects",
     },
     {
       link: "/contact",
@@ -39,7 +35,7 @@ export default function Root() {
   return (
     <AppShell
       padding="md"
-      header={<BensHeader links={headerLinks} />}
+      header={<CustomHeader links={headerLinks} />}
       styles={(theme) => ({
         main: {
           backgroundColor:

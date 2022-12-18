@@ -1,4 +1,3 @@
-import React from "react";
 import {
   createStyles,
   Header,
@@ -91,7 +90,7 @@ interface HeaderMiddleProps {
   links: { link: string; label: string }[];
 }
 
-export function BensHeader({ links }: HeaderMiddleProps) {
+export function CustomHeader({ links }: HeaderMiddleProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const { pathname } = useLocation();
   const { classes, cx } = useStyles();
@@ -121,9 +120,7 @@ export function BensHeader({ links }: HeaderMiddleProps) {
         <Group className={classes.links} spacing={5}>
           {items}
         </Group>
-
-        <Title order={3}>Ben's Portfolio</Title>
-
+        <Title order={3}>LAN MK III</Title>
         <Group spacing={0} className={classes.social} position="right" noWrap>
           <ActionIcon size="lg">
             <IconBrandFacebook size={18} stroke={1.5} />
