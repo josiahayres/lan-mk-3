@@ -28,5 +28,5 @@ export const router = createHashRouter(
       ],
     },
   ],
-  { basename: "/lan-mk-3/" }
+  { basename: "" }
 );
