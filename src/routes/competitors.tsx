@@ -1,6 +1,6 @@
 import { Container, SimpleGrid } from "@mantine/core";
 import React from "react";
-import { UserCard, UserCardProps } from "../components/user";
+import { UserCard, UserCardProps } from "../components/UserCard";
 
 type Props = {};
 
@@ -15,6 +15,8 @@ export const Competitors = (props: Props) => {
       name: "Josiah",
       platform: "XBOX",
       url: "https://fortnitetracker.com/profile/all/BOT%20daFish",
+      wins: 385,
+      elims: 7055,
     },
     {
       avatar:
@@ -25,6 +27,8 @@ export const Competitors = (props: Props) => {
       name: "Ben",
       platform: "PC",
       url: "https://fortnitetracker.com/profile/all/Babe1bae",
+      wins: 882,
+      elims: 26916,
     },
     {
       avatar:
@@ -35,6 +39,20 @@ export const Competitors = (props: Props) => {
       name: "Harry",
       platform: "XBOX",
       url: "https://fortnitetracker.com/profile/all/BOT%20Rskii",
+      wins: 472,
+      elims: 220077,
+    },
+
+    {
+      avatar: "https://trackercdn.com/legacycdn/fortnite/75AE11874_small.png",
+      image:
+        "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
+      gamerTag: "BotSlay3r",
+      name: "Andy",
+      platform: "PLAYSTATION",
+      url: "https://fortnitetracker.com/profile/all/BotSlay3r",
+      wins: 0,
+      elims: 0,
     },
   ];
   return (

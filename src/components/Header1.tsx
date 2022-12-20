@@ -147,7 +147,7 @@ export function CustomHeader({ links }: HeaderMiddleProps) {
         <Group className={classes.links} spacing={5}>
           {items}
         </Group>
-        <Title order={3}>LAN MK III</Title>
+        <Title order={3}>LAN MK</Title>
 
         <Group spacing={0} className={classes.social} position="right" noWrap>
           <ActionIcon size="lg">

@@ -204,7 +204,7 @@ export function Home() {
           <Title order={2} pb="md">
             Prize Pool
           </Title>
-          <Alert icon={<IconInfoCircle />}>
+          <Alert icon={<IconInfoCircle />} mb="md">
             Actual prizes are still being finalised!
           </Alert>
           <Carousel

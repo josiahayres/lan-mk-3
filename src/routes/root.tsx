@@ -8,8 +8,8 @@ import {
   startNavigationProgress,
 } from "@mantine/nprogress";
 
-import { CustomHeader } from "../components/header";
-import { Footer } from "../components/footer";
+import { CustomHeader } from "../components/Header1";
+import { Footer } from "../components/Footer1";
 
 export async function loader() {
   const headerLinks = [
