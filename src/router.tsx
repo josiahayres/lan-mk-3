@@ -25,7 +25,6 @@ export const router = createHashRouter(
           path: "competitors",
           element: <Competitors />,
         },
-        { path: "*", element: <Navigate to="/" /> },
       ],
     },
   ],
