@@ -2,13 +2,16 @@ import {
   Avatar,
   Text,
   Button,
-  Paper,
   createStyles,
   Card,
   BackgroundImage,
   Group,
   Badge,
+  Stack,
+  Box,
+  MantineColor,
 } from "@mantine/core";
+import { IconLink } from "@tabler/icons";
 
 export interface UserCardProps {
   avatar: string;
@@ -17,6 +20,8 @@ export interface UserCardProps {
   gamerTag: string;
   platform: string;
   url: string;
+  elims?: number;
+  wins?: number;
 }
 
 const useStyles = createStyles((theme) => ({
@@ -39,8 +44,16 @@ export function UserCard({
   gamerTag,
   platform,
   url,
+  elims = 0,
+  wins = 0,
 }: UserCardProps) {
   const { classes, theme } = useStyles();
+  const colors: Record<string, MantineColor> = {
+    xbox: "green",
+    pc: "dark",
+    playstation: "purple",
+  };
+  const platformColor = colors?.[platform.toLowerCase()] || "orange";
 
   return (
     <Card withBorder p="xl" radius="md" className={classes.card}>
@@ -59,15 +72,25 @@ export function UserCard({
         bg={theme.primaryColor}
         className={classes.avatar}
       />
-      <Text align="center" size="lg" weight={500} mt="sm">
-        {name}
-      </Text>
-      <Text align="center" size="sm" color="dimmed">
-        {gamerTag}
-      </Text>
-      <Group position="center">
-        <Badge>{platform}</Badge>
-      </Group>
+      <Stack>
+        <Box>
+          <Text align="center" size="lg" weight={500} mt="sm">
+            {name}
+          </Text>
+          <Text align="center" size="sm" color="dimmed">
+            {gamerTag}
+          </Text>
+        </Box>
+        <Group position="center">
+          <Badge variant="filled" color={platformColor}>
+            {platform}
+          </Badge>
+        </Group>
+        <Group position="center">
+          <Badge variant="outline">{elims} elims</Badge>
+          <Badge variant="outline">{wins} wins</Badge>
+        </Group>
+      </Stack>
       <Button
         variant="light"
         fullWidth
@@ -77,8 +100,9 @@ export function UserCard({
         target="_blank"
         rel="noopener"
         color={theme.primaryColor}
+        leftIcon={<IconLink size={18} stroke={1.5} />}
       >
-        View Stats
+        View all stats
       </Button>
     </Card>
   );

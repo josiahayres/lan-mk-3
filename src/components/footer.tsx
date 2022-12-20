@@ -1,16 +1,6 @@
-import {
-  createStyles,
-  Text,
-  Container,
-  ActionIcon,
-  Group,
-  Title,
-} from "@mantine/core";
-import {
-  IconBrandTwitter,
-  IconBrandYoutube,
-  IconBrandInstagram,
-} from "@tabler/icons";
+import { createStyles, Text, Container, Title } from "@mantine/core";
+
+import { SocialMediaIcons } from "./SocialMediaIcons";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -106,12 +96,6 @@ const useStyles = createStyles((theme) => ({
       flexDirection: "column",
     },
   },
-
-  social: {
-    [theme.fn.smallerThan("sm")]: {
-      marginTop: theme.spacing.xs,
-    },
-  },
 }));
 
 interface FooterLinksProps {
@@ -128,7 +112,7 @@ export function Footer() {
     <footer className={classes.footer}>
       <Container className={classes.inner}>
         <div className={classes.logo}>
-          <Title>LAN MK III</Title>
+          <Title>LAN MK</Title>
           <Text size="xs" color="dimmed" className={classes.description}>
             Built with ❤️ in Auckland · New Zealand
           </Text>
@@ -139,17 +123,7 @@ export function Footer() {
           © 2022 Ayres Technology. All rights reserved.
         </Text>
 
-        <Group spacing={0} className={classes.social} position="right" noWrap>
-          <ActionIcon size="lg">
-            <IconBrandTwitter size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandYoutube size={18} stroke={1.5} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <IconBrandInstagram size={18} stroke={1.5} />
-          </ActionIcon>
-        </Group>
+        <SocialMediaIcons />
       </Container>
     </footer>
   );

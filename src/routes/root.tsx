@@ -5,9 +5,6 @@ import { usePrevious } from "@mantine/hooks";
 import {
   NavigationProgress,
   completeNavigationProgress,
-  resetNavigationProgress,
-  stopNavigationProgress,
-  setNavigationProgress,
   startNavigationProgress,
 } from "@mantine/nprogress";
 
@@ -24,10 +21,6 @@ export async function loader() {
       link: "/competitors",
       label: "Competitors",
     },
-    {
-      link: "/contact",
-      label: "Sign Up",
-    },
   ];
   return { headerLinks };
 }
@@ -39,17 +32,14 @@ export default function Root() {
 
   useEffect(() => {
     let timer: any;
-    console.log("start");
     startNavigationProgress();
     if (prevPath !== pathname) {
       timer = setTimeout(() => {
-        console.log("complete");
         completeNavigationProgress();
       }, 200);
     }
     return () => {
       if (!!timer) {
-        console.log("cleanup");
         clearTimeout(timer);
       }
     };
@@ -58,7 +48,8 @@ export default function Root() {
   return (
     <AppShell padding={0} header={<CustomHeader links={headerLinks} />}>
       <NavigationProgress />
-      <Space h="md" />
+      <Space h="md" />{" "}
+      {/** This sets space under the header as we disabled padding on the page, so footer uses full width */}
       <Outlet />
       <Footer />
     </AppShell>

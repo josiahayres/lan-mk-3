@@ -1,12 +1,15 @@
-import { createBrowserRouter } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createHashRouter,
+  Navigate,
+} from "react-router-dom";
 
 import Root, { loader as rootLoader } from "./routes/root";
 import { ErrorPage } from "./error-page";
-import { Contact } from "./routes/contact";
 import { Home } from "./routes/home";
 import { Competitors } from "./routes/competitors";
 
-export const router = createBrowserRouter(
+export const router = createHashRouter(
   [
     {
       path: "/",
@@ -19,13 +22,10 @@ export const router = createBrowserRouter(
           element: <Home />,
         },
         {
-          path: "contact",
-          element: <Contact />,
-        },
-        {
           path: "competitors",
           element: <Competitors />,
         },
+        { path: "*", element: <Navigate to="/" /> },
       ],
     },
   ],
