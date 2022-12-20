@@ -204,6 +204,9 @@ export function Home() {
           <Title order={2} pb="md">
             Prize Pool
           </Title>
+          <Alert icon={<IconInfoCircle />}>
+            Actual prizes are still being finalised!
+          </Alert>
           <Carousel
             slideSize="50%"
             breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
@@ -311,8 +314,8 @@ export function Home() {
                 <Badge>Blaine's Flat</Badge>
               </Group>
               <Group>
-                <Avatar title="Blaine" radius={"xl"}></Avatar>
-                <Text>Winner: Blaine</Text>
+                <Avatar title="Harry" radius={"xl"}></Avatar>
+                <Text>Winner: Harry</Text>
               </Group>
             </Stack>
             <Stack>
