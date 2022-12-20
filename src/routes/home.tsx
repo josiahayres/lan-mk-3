@@ -192,7 +192,7 @@ export function Home() {
             <Box>
               <Image
                 radius="md"
-                src="/hero-image-vertical.png"
+                src="./hero-image-vertical.png"
                 fit="contain"
                 height="300px"
               />
