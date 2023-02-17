@@ -1,6 +1,6 @@
-import { Suspense } from "react";
+import { useEffect, useRef } from "react";
 import { Carousel } from "@mantine/carousel";
-import { useDisclosure, useMediaQuery } from "@mantine/hooks";
+import { useMediaQuery, useMouse, useViewportSize } from "@mantine/hooks";
 import {
   createStyles,
   Paper,
@@ -13,7 +13,6 @@ import {
   Group,
   Card,
   Image,
-  Space,
   Badge,
   SimpleGrid,
   Avatar,
@@ -22,9 +21,16 @@ import {
   Code,
   Alert,
   Table,
+  keyframes,
 } from "@mantine/core";
 import { IconBrandXbox, IconInfoCircle } from "@tabler/icons";
 import { Link } from "react-router-dom";
+
+export const rotate = keyframes({
+  from: { rotate: "0deg" },
+  "50%": { scale: "1 1.5" },
+  to: { rotate: "360deg" },
+});
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -51,6 +57,29 @@ const useStyles = createStyles((theme) => ({
     opacity: 0.7,
     fontWeight: 700,
     textTransform: "uppercase",
+  },
+  blob: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    translate: "-50% -50%",
+    borderRadius: "50%",
+    background: "linear-gradient(to right, aquamarine, lightblue, orange)",
+    animation: `${rotate} 20s ease-in-out infinite`,
+    opacity: 0.8,
+    height: "34vmax",
+    aspectRatio: "1",
+    "@media (max-width: 500px)": {
+      position: "fixed",
+    },
+  },
+  blur: {
+    height: "100vh",
+    width: "100%",
+    position: "fixed",
+    zIndex: 0,
+    top: 0,
+    backdropFilter: "blur(12vmax)",
   },
 }));
 
@@ -129,7 +158,7 @@ const data = [
 ];
 
 export function Home() {
-  const [canRotate, { toggle }] = useDisclosure(false);
+  const { classes } = useStyles();
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
   const slides = data.map((item) => (
@@ -149,190 +178,211 @@ export function Home() {
     </tr>
   ));
 
+  const { ref, x, y } = useMouse();
+  const { height, width } = useViewportSize();
+
+  const blob = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!blob.current) return;
+    console.log(x, y, width, height);
+    blob.current.animate(
+      {
+        left: `${x || 150}px`,
+        top: `${y | 150}px`,
+      },
+      { duration: 3000, fill: "forwards" }
+    );
+  }, [x, y]);
+
   return (
-    <Container>
-      <Stack spacing="xl">
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <SimpleGrid
-            cols={2}
-            breakpoints={[{ maxWidth: "sm", cols: 1, spacing: "sm" }]}
-          >
-            <Stack>
-              <Title>
-                Welcome to{" "}
-                <Text
-                  span
-                  variant="gradient"
-                  inherit
-                  gradient={{ from: "orange", to: "red" }}
-                >
-                  LAN MK
+    <div ref={ref}>
+      <div ref={blob} className={classes.blob} />
+      <div className={classes.blur} />
+      <Container>
+        <Stack spacing="xl">
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <SimpleGrid
+              cols={2}
+              breakpoints={[{ maxWidth: "sm", cols: 1, spacing: "sm" }]}
+            >
+              <Stack>
+                <Title>
+                  Welcome to{" "}
+                  <Text
+                    span
+                    variant="gradient"
+                    inherit
+                    gradient={{ from: "orange", to: "red" }}
+                  >
+                    LAN MK
+                  </Text>
+                </Title>
+                <Text>
+                  Kia Ora!
+                  <br /> YOU are invited to LanMK3 <b>No Build Edition</b>!
                 </Text>
-              </Title>
-              <Text>
-                Kia Ora!
-                <br /> YOU are invited to LanMK3 <b>No Build Edition</b>!
-              </Text>
-              <Text>
-                This year, the prize pool is worth over{" "}
-                <Text span fw={700} color="red.7">
-                  $300
+                <Text>
+                  This year, the prize pool is worth over{" "}
+                  <Text span fw={700} color="red.7">
+                    $300
+                  </Text>
+                  !<br />
+                  We hope you join us in the Battle Royales, Creative
+                  Tournaments and much, much more.
                 </Text>
-                !<br />
-                We hope you join us in the Battle Royales, Creative Tournaments
-                and much, much more.
-              </Text>
-              <Text>
-                Just like last time, all participants of LanMK are winners and
-                will take home prizes. The overall champion of the event will
-                win the coveted LanMK trophy!
-              </Text>
-            </Stack>
+                <Text>
+                  Just like last time, all participants of LanMK are winners and
+                  will take home prizes. The overall champion of the event will
+                  win the coveted LanMK trophy!
+                </Text>
+              </Stack>
 
-            <Box>
-              <Image
-                radius="md"
-                src="./hero-image-vertical.png"
-                fit="contain"
-                height="300px"
-              />
-            </Box>
-          </SimpleGrid>
-        </Card>
+              <Box>
+                <Image
+                  radius="md"
+                  src="./hero-image-vertical.png"
+                  fit="contain"
+                  height="300px"
+                />
+              </Box>
+            </SimpleGrid>
+          </Card>
 
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <Title order={2} pb="md">
-            Prize Pool
-          </Title>
-          <Alert icon={<IconInfoCircle />} mb="md">
-            Actual prizes are still being finalised!
-          </Alert>
-          <Carousel
-            slideSize="50%"
-            breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
-            slideGap="xl"
-            align="start"
-            slidesToScroll={mobile ? 1 : 2}
-          >
-            {slides}
-          </Carousel>
-        </Card>
-
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <Title order={2} pb="md">
-            Event Schedule
-          </Title>
-          <Box sx={{ minHeight: "20vh" }}>
-            <Alert icon={<IconInfoCircle />}>
-              The event schedule, creative maps, and custom game modes are still
-              being finalised. Please provide any suggestions and requests to
-              the organisers.
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <Title order={2} pb="md">
+              Prize Pool
+            </Title>
+            <Alert icon={<IconInfoCircle />} mb="md">
+              Actual prizes are still being finalised!
             </Alert>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Time</th>
-                  <th>Event</th>
-                </tr>
-              </thead>
-              <tbody>{rows}</tbody>
-            </Table>
-          </Box>
-        </Card>
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <Title order={2} pb="md">
-            How to register?
-          </Title>
-          <Box sx={{ minHeight: "20vh" }}>
-            <Stack>
-              <Text>
-                Cost of a LanMK3 ticket is{" "}
-                <Text span fw={700}>
-                  $10
+            <Carousel
+              slideSize="50%"
+              breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
+              slideGap="xl"
+              align="start"
+              slidesToScroll={mobile ? 1 : 2}
+            >
+              {slides}
+            </Carousel>
+          </Card>
+
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <Title order={2} pb="md">
+              Event Schedule
+            </Title>
+            <Box sx={{ minHeight: "20vh" }}>
+              <Alert icon={<IconInfoCircle />}>
+                The event schedule, creative maps, and custom game modes are
+                still being finalised. Please provide any suggestions and
+                requests to the organisers.
+              </Alert>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Event</th>
+                  </tr>
+                </thead>
+                <tbody>{rows}</tbody>
+              </Table>
+            </Box>
+          </Card>
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <Title order={2} pb="md">
+              How to register?
+            </Title>
+            <Box sx={{ minHeight: "20vh" }}>
+              <Stack>
+                <Text>
+                  Cost of a LanMK3 ticket is{" "}
+                  <Text span fw={700}>
+                    $10
+                  </Text>
+                  .
                 </Text>
-                .
-              </Text>
-              <Text>
-                This is payable only through bank transfer to:{" "}
-                <Code sx={{ fontSize: "inherit" }}>12-3034-0879168-50</Code>.
-              </Text>
-              <Text>Entry without payment is not permissible.</Text>
-            </Stack>
-          </Box>
-        </Card>
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <Title order={2} pb="md">
-            Requirements
-          </Title>
-          <Text>LanMK is a BYO event. This includes:</Text>
-          <List
-            py="md"
-            icon={
-              <IconBrandXbox
-                size={20}
-                stroke={1.5}
-                color={theme.primaryColor}
-              />
-            }
-          >
-            <List.Item>Gaming monitor</List.Item>
-            <List.Item>Operating System: Console/PC</List.Item>
-            <List.Item>Controller/Mouse & Keyboard</List.Item>
-            <List.Item>Headset w/Microphone</List.Item>
-            <List.Item>Power/Video/Audio Cables</List.Item>
-            <List.Item>Lan Cable</List.Item>
-            <List.Item>
-              Any Snacks and Drinks you want (Snacks and Drinks will be
-              provided)
-            </List.Item>
-          </List>
-          <Alert icon={<IconInfoCircle />}>
-            Your Operating System must be updated and have the latest version of
-            Fortnite installed before attending this event.
-          </Alert>
-        </Card>
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <Title order={2} pb="md">
-            Who's Competing
-          </Title>
-          <Box py="md">
-            <Link to="/competitors">
-              <Button fullWidth>See competitors</Button>
-            </Link>
-          </Box>
-        </Card>
-        <Card shadow={"md"} withBorder radius={"lg"}>
-          <Title order={2} pb="md">
-            History of LAN MK
-          </Title>
-          <SimpleGrid cols={2}>
-            <Stack>
-              <Title order={4}>LAN MK I</Title>
-              <Group>
-                <Badge>Feb 2021</Badge>
-                <Badge>10 attendees</Badge>
-                <Badge>Blaine's Flat</Badge>
-              </Group>
-              <Group>
-                <Avatar title="Harry" radius={"xl"}></Avatar>
-                <Text>Winner: Harry</Text>
-              </Group>
-            </Stack>
-            <Stack>
-              <Title order={4}>LAN MK II</Title>
-              <Group>
-                <Badge>Feb 2022</Badge>
-                <Badge>12 attendees</Badge>
-                <Badge>Blaine's Flat</Badge>
-              </Group>
-              <Group>
-                <Avatar title="Blaine" radius={"xl"}></Avatar>
-                <Text>Winner: Blaine</Text>
-              </Group>
-            </Stack>
-          </SimpleGrid>
-        </Card>
-      </Stack>
-    </Container>
+                <Text>
+                  This is payable only through bank transfer to:{" "}
+                  <Code sx={{ fontSize: "inherit" }}>12-3034-0879168-50</Code>.
+                </Text>
+                <Text>Entry without payment is not permissible.</Text>
+              </Stack>
+            </Box>
+          </Card>
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <Title order={2} pb="md">
+              Requirements
+            </Title>
+            <Text>LanMK is a BYO event. This includes:</Text>
+            <List
+              py="md"
+              icon={
+                <IconBrandXbox
+                  size={20}
+                  stroke={1.5}
+                  color={theme.primaryColor}
+                />
+              }
+            >
+              <List.Item>Gaming monitor</List.Item>
+              <List.Item>Operating System: Console/PC</List.Item>
+              <List.Item>Controller/Mouse & Keyboard</List.Item>
+              <List.Item>Headset w/Microphone</List.Item>
+              <List.Item>Power/Video/Audio Cables</List.Item>
+              <List.Item>Lan Cable</List.Item>
+              <List.Item>
+                Any Snacks and Drinks you want (Snacks and Drinks will be
+                provided)
+              </List.Item>
+            </List>
+            <Alert icon={<IconInfoCircle />}>
+              Your Operating System must be updated and have the latest version
+              of Fortnite installed before attending this event.
+            </Alert>
+          </Card>
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <Title order={2} pb="md">
+              Who's Competing
+            </Title>
+            <Box py="md">
+              <Link to="/competitors">
+                <Button fullWidth>See competitors</Button>
+              </Link>
+            </Box>
+          </Card>
+          <Card shadow={"md"} withBorder radius={"lg"}>
+            <Title order={2} pb="md">
+              History of LAN MK
+            </Title>
+            <SimpleGrid cols={2}>
+              <Stack>
+                <Title order={4}>LAN MK I</Title>
+                <Group>
+                  <Badge>Feb 2021</Badge>
+                  <Badge>10 attendees</Badge>
+                  <Badge>Blaine's Flat</Badge>
+                </Group>
+                <Group>
+                  <Avatar title="Harry" radius={"xl"}></Avatar>
+                  <Text>Winner: Harry</Text>
+                </Group>
+              </Stack>
+              <Stack>
+                <Title order={4}>LAN MK II</Title>
+                <Group>
+                  <Badge>Feb 2022</Badge>
+                  <Badge>12 attendees</Badge>
+                  <Badge>Blaine's Flat</Badge>
+                </Group>
+                <Group>
+                  <Avatar title="Blaine" radius={"xl"}></Avatar>
+                  <Text>Winner: Blaine</Text>
+                </Group>
+              </Stack>
+            </SimpleGrid>
+          </Card>
+        </Stack>
+      </Container>
+    </div>
   );
 }
