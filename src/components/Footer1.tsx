@@ -11,8 +11,9 @@ const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[6]
         : theme.colors.gray[0],
-    borderTop: `1px solid ${theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
-      }`,
+    borderTop: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
+    }`,
   },
 
   logo: {
@@ -87,8 +88,9 @@ const useStyles = createStyles((theme) => ({
     marginTop: theme.spacing.xl,
     paddingTop: theme.spacing.xl,
     paddingBottom: theme.spacing.xl,
-    borderTop: `1px solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
-      }`,
+    borderTop: `1px solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2]
+    }`,
 
     [theme.fn.smallerThan("sm")]: {
       flexDirection: "column",
@@ -113,7 +115,8 @@ export function Footer() {
           <Title>LAN MK</Title>
           <Text size="xs" color="dimmed" className={classes.description}>
             Built with ❤️ in Auckland · New Zealand
-          </Text> <Text color="dimmed" size="xs">
+          </Text>{" "}
+          <Text color="dimmed" size="xs">
             Read this code to Ben on the day to win an instant spot prize:
             <Code>y0ur_M0M_is_y0ur_DAD</Code>
           </Text>
@@ -121,7 +124,7 @@ export function Footer() {
       </Container>
       <Container className={classes.afterFooter}>
         <Text color="dimmed" size="sm">
-          © 2022 Ayres Technology. All rights reserved.
+          © 2023 Ayres Technology. All rights reserved.
         </Text>
 
         <SocialMediaIcons />

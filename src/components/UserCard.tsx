@@ -22,6 +22,7 @@ export interface UserCardProps {
   url: string;
   elims?: number;
   wins?: number;
+  hoursPlayed: number;
 }
 
 const useStyles = createStyles((theme) => ({
@@ -46,6 +47,7 @@ export function UserCard({
   url,
   elims = 0,
   wins = 0,
+  hoursPlayed,
 }: UserCardProps) {
   const { classes, theme } = useStyles();
   const colors: Record<string, MantineColor> = {
@@ -86,9 +88,10 @@ export function UserCard({
             {platform}
           </Badge>
         </Group>
-        <Group position="center">
+        <Group position="center" spacing="xs">
           <Badge variant="outline">{elims} elims</Badge>
           <Badge variant="outline">{wins} wins</Badge>
+          <Badge variant="outline">{hoursPlayed} hours</Badge>
         </Group>
       </Stack>
       <Button

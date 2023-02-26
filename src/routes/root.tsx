@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { AppShell, Space } from "@mantine/core";
-import { usePrevious } from "@mantine/hooks";
+import { usePrevious, useWindowScroll } from "@mantine/hooks";
 import {
   NavigationProgress,
   completeNavigationProgress,
@@ -29,11 +29,13 @@ export default function Root() {
   const { headerLinks } = useLoaderData() as any;
   const { pathname } = useLocation();
   const prevPath = usePrevious(location.pathname);
+  const [, scrollTo] = useWindowScroll();
 
   useEffect(() => {
     let timer: any;
     startNavigationProgress();
     if (prevPath !== pathname) {
+      //
       timer = setTimeout(() => {
         completeNavigationProgress();
       }, 200);
@@ -44,6 +46,10 @@ export default function Root() {
       }
     };
   }, [pathname, prevPath]);
+
+  useEffect(() => {
+    scrollTo({ y: 0 });
+  }, [pathname]);
 
   return (
     <AppShell padding={0} header={<CustomHeader links={headerLinks} />}>

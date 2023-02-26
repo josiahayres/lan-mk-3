@@ -16,7 +16,8 @@ export const Competitors = (props: Props) => {
       platform: "XBOX",
       url: "https://fortnitetracker.com/profile/all/BOT%20daFish",
       wins: 385,
-      elims: 7055,
+      elims: 7353,
+      hoursPlayed: 755,
     },
     {
       avatar:
@@ -28,20 +29,22 @@ export const Competitors = (props: Props) => {
       platform: "PC",
       url: "https://fortnitetracker.com/profile/all/Babe1bae",
       wins: 882,
-      elims: 26916,
+      elims: 26962,
+      hoursPlayed: 936,
     },
-    // {
-    //   avatar:
-    //     "https://cdn.thetrackernetwork.com/cdn/fortnite/26146172_small.png",
-    //   image:
-    //     "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
-    //   gamerTag: "BOT Rskii",
-    //   name: "Harry",
-    //   platform: "XBOX",
-    //   url: "https://fortnitetracker.com/profile/all/BOT%20Rskii",
-    //   wins: 472,
-    //   elims: 220077,
-    // },
+    {
+      avatar:
+        "https://cdn.thetrackernetwork.com/cdn/fortnite/26146172_small.png",
+      image:
+        "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
+      gamerTag: "BOT Rskii",
+      name: "Harry",
+      platform: "XBOX",
+      url: "https://fortnitetracker.com/profile/all/BOT%20Rskii",
+      wins: 472,
+      elims: 22332,
+      hoursPlayed: 698,
+    },
 
     // {
     //   avatar: "https://trackercdn.com/legacycdn/fortnite/75AE11874_small.png",
@@ -57,8 +60,9 @@ export const Competitors = (props: Props) => {
   ];
   return (
     <Container>
-      <Alert color='red' mb='xl'>
-            <Text>You will be added to this list on confirmation of payment.</Text></Alert>
+      <Alert color="red" mb="xl">
+        <Text>You will be added to this list on confirmation of payment.</Text>
+      </Alert>
       <SimpleGrid
         breakpoints={[
           { minWidth: "xl", cols: 3, spacing: "md" },

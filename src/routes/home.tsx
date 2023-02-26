@@ -27,14 +27,13 @@ import {
   ActionIcon,
   Flex,
 } from "@mantine/core";
-import { IconBrandXbox, IconCheck, IconCopy, IconInfoCircle } from "@tabler/icons";
+import {
+  IconBrandXbox,
+  IconCheck,
+  IconCopy,
+  IconInfoCircle,
+} from "@tabler/icons";
 import { Link } from "react-router-dom";
-
-export const rotate = keyframes({
-  from: { rotate: "0deg" },
-  "50%": { scale: "1 1.5" },
-  to: { rotate: "360deg" },
-});
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -61,29 +60,6 @@ const useStyles = createStyles((theme) => ({
     opacity: 0.7,
     fontWeight: 700,
     textTransform: "uppercase",
-  },
-  blob: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    translate: "-50% -50%",
-    borderRadius: "50%",
-    background: "linear-gradient(to right, aquamarine, lightblue, orange)",
-    animation: `${rotate} 20s ease-in-out infinite`,
-    opacity: 0.8,
-    height: "34vmax",
-    aspectRatio: "1",
-    "@media (max-width: 500px)": {
-      position: "fixed",
-    },
-  },
-  blur: {
-    height: "100vh",
-    width: "100%",
-    position: "fixed",
-    zIndex: 0,
-    top: 0,
-    backdropFilter: "blur(12vmax)",
   },
 }));
 
@@ -125,7 +101,8 @@ const data = [
   {
     image:
       "https://images.unsplash.com/photo-1580464360012-948b4fe5ddc2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80",
-    title: "Overall Champion wins a $50 Prezzie Card, Lan MK Trophy and a kiss from Ben!",
+    title:
+      "Overall Champion wins a $50 Prezzie Card, Lan MK Trophy and a kiss from Ben!",
     category: "1st Place",
   },
   {
@@ -171,27 +148,8 @@ export function Home() {
     </tr>
   ));
 
-  const { ref, x, y } = useMouse();
-  const { height, width } = useViewportSize();
-
-  const blob = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (!blob.current) return;
-    console.log(x, y, width, height);
-    blob.current.animate(
-      {
-        left: `${x || 150}px`,
-        top: `${y | 150}px`,
-      },
-      { duration: 3000, fill: "forwards" }
-    );
-  }, [x, y]);
-
   return (
-    <div ref={ref}>
-      {/* <div ref={blob} className={classes.blob} />
-      <div className={classes.blur} /> */}
+    <div>
       <Container>
         <Stack spacing="xl">
           <Card shadow={"md"} withBorder radius={"lg"}>
@@ -217,7 +175,7 @@ export function Home() {
                 </Text>
                 <Text>
                   This year, the prize pool is worth over{" "}
-                  <Text span fw={700} color="red.7" size='lg'>
+                  <Text span fw={700} color="red.7" size="lg">
                     $150
                   </Text>
                   !<br />
@@ -246,7 +204,7 @@ export function Home() {
             <Title order={2} pb="md">
               Prize Pool
             </Title>
-            <Alert icon={<IconInfoCircle />} mb="md" color='orange'>
+            <Alert icon={<IconInfoCircle />} mb="md" color="orange">
               These prizes are legit!
             </Alert>
             <Carousel
@@ -289,24 +247,37 @@ export function Home() {
               <Stack>
                 <Text>
                   Cost of a LanMK3 ticket is{" "}
-                  <Text span fw={700} size='lg'>
+                  <Text span fw={700} size="lg">
                     $17.50
                   </Text>
                   .
                 </Text>
                 <Text>
                   <Flex>
-                  This is payable through bank transfer to:{" "}
-                  <Code sx={{ fontSize: "inherit" }}>12-3034-0879168-50</Code><CopyButton value="12-3034-0879168-50" timeout={2000}>
-                    {({ copied, copy }) => (
-                      <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
-                        <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
-                          {copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
-                        </ActionIcon>
-                      </Tooltip>
-                    )}
-                  </CopyButton>
-                  prior to the event, or by paying cash on the day.</Flex>
+                    This is payable through bank transfer to:{" "}
+                    <Code sx={{ fontSize: "inherit" }}>12-3034-0879168-50</Code>
+                    <CopyButton value="12-3034-0879168-50" timeout={2000}>
+                      {({ copied, copy }) => (
+                        <Tooltip
+                          label={copied ? "Copied" : "Copy"}
+                          withArrow
+                          position="right"
+                        >
+                          <ActionIcon
+                            color={copied ? "teal" : "gray"}
+                            onClick={copy}
+                          >
+                            {copied ? (
+                              <IconCheck size={16} />
+                            ) : (
+                              <IconCopy size={16} />
+                            )}
+                          </ActionIcon>
+                        </Tooltip>
+                      )}
+                    </CopyButton>
+                    prior to the event, or by paying cash on the day.
+                  </Flex>
                 </Text>
                 <Text>Entry without payment is not permissible.</Text>
                 <Alert title="Your Ticket Fee will cover the following costs:">
@@ -325,7 +296,8 @@ export function Home() {
                     <List.Item>Snacks and Drinks</List.Item>
                     <List.Item>Venue Hire</List.Item>
                     <List.Item>Above Average Internet Service</List.Item>
-                  </List> </Alert>
+                  </List>{" "}
+                </Alert>
               </Stack>
             </Box>
           </Card>
@@ -364,7 +336,9 @@ export function Home() {
             <Title order={2} pb="md">
               Who's Competing
             </Title>
-            <Text>You will be added to this list on confirmation of payment.</Text>
+            <Text>
+              You will be added to this list on confirmation of payment.
+            </Text>
             <Box py="md">
               <Link to="/competitors">
                 <Button fullWidth>See competitors</Button>
