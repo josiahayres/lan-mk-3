@@ -1,4 +1,4 @@
-import { Container, SimpleGrid } from "@mantine/core";
+import { Alert, Container, SimpleGrid, Text } from "@mantine/core";
 import React from "react";
 import { UserCard, UserCardProps } from "../components/UserCard";
 
@@ -30,33 +30,35 @@ export const Competitors = (props: Props) => {
       wins: 882,
       elims: 26916,
     },
-    {
-      avatar:
-        "https://cdn.thetrackernetwork.com/cdn/fortnite/26146172_small.png",
-      image:
-        "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
-      gamerTag: "BOT Rskii",
-      name: "Harry",
-      platform: "XBOX",
-      url: "https://fortnitetracker.com/profile/all/BOT%20Rskii",
-      wins: 472,
-      elims: 220077,
-    },
+    // {
+    //   avatar:
+    //     "https://cdn.thetrackernetwork.com/cdn/fortnite/26146172_small.png",
+    //   image:
+    //     "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
+    //   gamerTag: "BOT Rskii",
+    //   name: "Harry",
+    //   platform: "XBOX",
+    //   url: "https://fortnitetracker.com/profile/all/BOT%20Rskii",
+    //   wins: 472,
+    //   elims: 220077,
+    // },
 
-    {
-      avatar: "https://trackercdn.com/legacycdn/fortnite/75AE11874_small.png",
-      image:
-        "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
-      gamerTag: "BotSlay3r",
-      name: "Andy",
-      platform: "PLAYSTATION",
-      url: "https://fortnitetracker.com/profile/all/BotSlay3r",
-      wins: 0,
-      elims: 0,
-    },
+    // {
+    //   avatar: "https://trackercdn.com/legacycdn/fortnite/75AE11874_small.png",
+    //   image:
+    //     "https://cdn.thetrackernetwork.com/cdn/fm/3A6Efortnite-rocketsdark.jpg",
+    //   gamerTag: "BotSlay3r",
+    //   name: "Andy",
+    //   platform: "PLAYSTATION",
+    //   url: "https://fortnitetracker.com/profile/all/BotSlay3r",
+    //   wins: 0,
+    //   elims: 0,
+    // },
   ];
   return (
     <Container>
+      <Alert color='red' mb='xl'>
+            <Text>You will be added to this list on confirmation of payment.</Text></Alert>
       <SimpleGrid
         breakpoints={[
           { minWidth: "xl", cols: 3, spacing: "md" },

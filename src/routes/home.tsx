@@ -22,8 +22,12 @@ import {
   Alert,
   Table,
   keyframes,
+  CopyButton,
+  Tooltip,
+  ActionIcon,
+  Flex,
 } from "@mantine/core";
-import { IconBrandXbox, IconInfoCircle } from "@tabler/icons";
+import { IconBrandXbox, IconCheck, IconCopy, IconInfoCircle } from "@tabler/icons";
 import { Link } from "react-router-dom";
 
 export const rotate = keyframes({
@@ -121,39 +125,26 @@ const data = [
   {
     image:
       "https://images.unsplash.com/photo-1580464360012-948b4fe5ddc2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80",
-    title: "Overall Champion wins a Rare Fortnite Skin",
+    title: "Overall Champion wins a $50 Prezzie Card, Lan MK Trophy and a kiss from Ben!",
     category: "1st Place",
   },
   {
     image:
       "https://images.unsplash.com/photo-1601850494422-3cf14624b0b3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDg2fHxnYW1pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
-    title: "Runner up wins a Rare Fortnite Emote",
+    title: "Runner up wins a $25 Prezzie Card",
     category: "2nd Place",
   },
   {
     image:
       "https://images.unsplash.com/flagged/photo-1580234820596-0876d136e6d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2934&q=80",
-    title: "Take home [consolation prize] for your efforts.",
+    title: "Third Place wins a $15 Prezzie Card.",
     category: "3rd Place",
   },
   {
     image:
       "https://images.unsplash.com/photo-1605158663591-681f789bd067?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjN8fGdhbWluZyUyMGxvc2V8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
-    title: "Try harder next time if you want a prize",
+    title: "A Very Special Secret Present 😉",
     category: "Last place",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1531525645387-7f14be1bdbbd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1760&q=80",
-    title: "You can out-build any opponent to win the battle",
-    category: "Best Builder",
-  },
-  {
-    image:
-      "https://images.unsplash.com/photo-1603163768210-60e522c7e1a5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjU4fHxnYW1pbmd8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60",
-    title:
-      "Maybe you can't build like a pro, but you make up for it with your accuracy",
-    category: "Best Shot",
   },
 ];
 
@@ -168,9 +159,11 @@ export function Home() {
   ));
 
   const rows = [
-    { name: "Warmup", time: "TBC" },
-    { name: "Creative", time: "TBC" },
-    { name: "Grand final", time: "TBC" },
+    { name: "Arrive and setup", time: "3.00PM" },
+    { name: "Tournament Kickoff", time: "4.00PM" },
+    { name: "Dinner", time: "6.30PM" },
+    { name: "Last Few Games", time: "7.15PM" },
+    { name: "Prize Givings and wrap up", time: "8.30PM" },
   ].map((element) => (
     <tr key={element.name}>
       <td>{element.time}</td>
@@ -197,8 +190,8 @@ export function Home() {
 
   return (
     <div ref={ref}>
-      <div ref={blob} className={classes.blob} />
-      <div className={classes.blur} />
+      {/* <div ref={blob} className={classes.blob} />
+      <div className={classes.blur} /> */}
       <Container>
         <Stack spacing="xl">
           <Card shadow={"md"} withBorder radius={"lg"}>
@@ -224,8 +217,8 @@ export function Home() {
                 </Text>
                 <Text>
                   This year, the prize pool is worth over{" "}
-                  <Text span fw={700} color="red.7">
-                    $300
+                  <Text span fw={700} color="red.7" size='lg'>
+                    $150
                   </Text>
                   !<br />
                   We hope you join us in the Battle Royales, Creative
@@ -253,8 +246,8 @@ export function Home() {
             <Title order={2} pb="md">
               Prize Pool
             </Title>
-            <Alert icon={<IconInfoCircle />} mb="md">
-              Actual prizes are still being finalised!
+            <Alert icon={<IconInfoCircle />} mb="md" color='orange'>
+              These prizes are legit!
             </Alert>
             <Carousel
               slideSize="50%"
@@ -296,16 +289,43 @@ export function Home() {
               <Stack>
                 <Text>
                   Cost of a LanMK3 ticket is{" "}
-                  <Text span fw={700}>
-                    $10
+                  <Text span fw={700} size='lg'>
+                    $17.50
                   </Text>
                   .
                 </Text>
                 <Text>
-                  This is payable only through bank transfer to:{" "}
-                  <Code sx={{ fontSize: "inherit" }}>12-3034-0879168-50</Code>.
+                  <Flex>
+                  This is payable through bank transfer to:{" "}
+                  <Code sx={{ fontSize: "inherit" }}>12-3034-0879168-50</Code><CopyButton value="12-3034-0879168-50" timeout={2000}>
+                    {({ copied, copy }) => (
+                      <Tooltip label={copied ? 'Copied' : 'Copy'} withArrow position="right">
+                        <ActionIcon color={copied ? 'teal' : 'gray'} onClick={copy}>
+                          {copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
+                        </ActionIcon>
+                      </Tooltip>
+                    )}
+                  </CopyButton>
+                  prior to the event, or by paying cash on the day.</Flex>
                 </Text>
                 <Text>Entry without payment is not permissible.</Text>
+                <Alert title="Your Ticket Fee will cover the following costs:">
+                  <List
+                    py="md"
+                    icon={
+                      <IconBrandXbox
+                        size={20}
+                        stroke={1.5}
+                        color={theme.primaryColor}
+                      />
+                    }
+                  >
+                    <List.Item>Prizes</List.Item>
+                    <List.Item>Dinner</List.Item>
+                    <List.Item>Snacks and Drinks</List.Item>
+                    <List.Item>Venue Hire</List.Item>
+                    <List.Item>Above Average Internet Service</List.Item>
+                  </List> </Alert>
               </Stack>
             </Box>
           </Card>
@@ -344,6 +364,7 @@ export function Home() {
             <Title order={2} pb="md">
               Who's Competing
             </Title>
+            <Text>You will be added to this list on confirmation of payment.</Text>
             <Box py="md">
               <Link to="/competitors">
                 <Button fullWidth>See competitors</Button>
@@ -364,7 +385,7 @@ export function Home() {
                 </Group>
                 <Group>
                   <Avatar title="Harry" radius={"xl"}></Avatar>
-                  <Text>Winner: Harry</Text>
+                  <Text>Winner: Luke</Text>
                 </Group>
               </Stack>
               <Stack>
@@ -376,7 +397,7 @@ export function Home() {
                 </Group>
                 <Group>
                   <Avatar title="Blaine" radius={"xl"}></Avatar>
-                  <Text>Winner: Blaine</Text>
+                  <Text>Winner: Harry</Text>
                 </Group>
               </Stack>
             </SimpleGrid>
